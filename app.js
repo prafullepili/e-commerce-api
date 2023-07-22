@@ -1,18 +1,20 @@
-const express = require('express')
 require('dotenv').config();
 require('express-async-errors');
-const app = express()
+const express = require('express')
+const morgan = require('morgan')
 
-// database
-const connectDB = require('./db/connect');
+const app = express()
+const connectDB = require('./db/connect'); // database
 
 //middleware 
-const notFountMiddleware = require('./middleware/not-found')
+const notFountMiddleware = require('./middleware/not-found') //page not found
 const errorHandlerMiddleware = require('./middleware/error-handler')
 
+app.use(morgan('tiny'))
 app.use(express.json());
+
 app.get('/', (req, res) => {
-    req.send('E-commerce api')
+    res.send('E-commerce api')
 })
 
 app.use(notFountMiddleware)
@@ -22,9 +24,7 @@ const port = process.env.PORT || 5000
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI)
-        app.listen(port, (req, res) => {
-            console.log(`Server is listening on port ${port}...`)
-        })
+        app.listen(port, console.log(`Server is listening on port ${port}...`))
     } catch (error) {
         console.log(error);
     }
