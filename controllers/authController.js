@@ -4,12 +4,12 @@ const CustomError = require('../errors')
 
 
 const register = async (req, res) => {
-    const { email } = req.body;
+    const { name, email, password } = req.body;
 
     const isEmailExist = await User.findOne({ email })
     if (isEmailExist)
         throw new CustomError.BadRequestError('Email already exists')
-    const user = await User.create(req.body);
+    const user = await User.create({ name, email, password });
     res.status(StatusCodes.CREATED).json({ user })
 }
 
