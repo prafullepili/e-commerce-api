@@ -1,12 +1,13 @@
 const User = require('../models/User')
 const { StatusCodes } = require('http-status-codes')
 const CustomError = require('../errors')
-
+const { createTokenUser, attachCookiesToResponse } = require('../utils')
 
 const getAllUsers = async (req, res) => {
     const users = await User.find({ role: 'user' }).select('-password -__v');
     res.status(StatusCodes.OK).json({ users, count: users.length });
 }
+
 
 const getSingleUser = async (req, res) => {
     const { id } = req.params;
@@ -17,13 +18,27 @@ const getSingleUser = async (req, res) => {
     res.status(StatusCodes.OK).json({ user });
 }
 
+
 const showCurrentUser = async (req, res) => {
     res.status(StatusCodes.OK).json({ user: req.user })
 }
 
+
 const updateUser = async (req, res) => {
-    res.send("updateUser")
+    const { email, name } = req.body;
+    if (!email || !name) {
+        throw new CustomError.BadRequestError("Please provide all values")
+    }
+    const user = await User.findOneAndUpdate(
+        { _id: req.user.userId },
+        { email, name },
+        { new: true, runValidators: true }
+    ).select('-password -__v');
+    const tokenUser = createTokenUser(user);
+    attachCookiesToResponse({ res, user: tokenUser })
+    res.status(StatusCodes.OK).json({ user })
 }
+
 
 const updateUserPassword = async (req, res) => {
     const { oldPassword, newPassword } = req.body;
