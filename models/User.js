@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
-const bcrypt = require('bcryptjs')
+// const bcrypt = require('bcryptjs')
+const md5 = require('md5');
 
 
 const UserSchema = new mongoose.Schema({
@@ -31,13 +32,23 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
+// UserSchema.pre('save', async function () {
+//     const salt = await bcrypt.genSalt(10);
+//     this.password = await bcrypt.hash(this.password, salt);
+// })
+
+// UserSchema.methods.comparePassword = async function (canditatePassword) {
+//     const isMatch = await bcrypt.compare(canditatePassword, this.password)
+//     return isMatch;
+// }
+
 UserSchema.pre('save', async function () {
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
+    this.password = md5(this.password);
 })
 
 UserSchema.methods.comparePassword = async function (canditatePassword) {
-    const isMatch = await bcrypt.compare(canditatePassword, this.password)
+    let hashedPassword = md5(canditatePassword);
+    const isMatch = hashedPassword == this.password
     return isMatch;
 }
 
