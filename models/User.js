@@ -43,6 +43,7 @@ const UserSchema = new mongoose.Schema({
 // }
 
 UserSchema.pre('save', async function () {
+    if (!this.isModified('password')) return
     this.password = md5(this.password);
 })
 
