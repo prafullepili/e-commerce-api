@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 // const bcrypt = require('bcryptjs')
 const md5 = require('md5');
+const CustomError = require('../errors')
 
 
 const UserSchema = new mongoose.Schema({
@@ -43,6 +44,9 @@ const UserSchema = new mongoose.Schema({
 // }
 
 UserSchema.pre('save', async function () {
+    if (this.modifiedPaths().length == 0) {
+        throw new CustomError.CustomAPIError('Same data is given. No change')
+    }
     if (!this.isModified('password')) return
     this.password = md5(this.password);
 })
