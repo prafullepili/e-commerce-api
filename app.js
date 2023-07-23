@@ -2,6 +2,7 @@ require('dotenv').config();
 require('express-async-errors');
 const express = require('express')
 const morgan = require('morgan')
+const cookieParser = require('cookie-parser')
 
 const app = express()
 const connectDB = require('./db/connect'); // database
@@ -15,8 +16,11 @@ const errorHandlerMiddleware = require('./middleware/error-handler')
 
 app.use(morgan('tiny'))
 app.use(express.json());
+app.use(cookieParser())
+
 
 app.get('/', (req, res) => {
+    console.log(req.cookies)
     res.send('E-commerce api')
 })
 app.use('/api/v1/auth', authRouter)
