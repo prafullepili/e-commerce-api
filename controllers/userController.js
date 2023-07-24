@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const { StatusCodes } = require('http-status-codes')
 const CustomError = require('../errors')
-const { createTokenUser, attachCookiesToResponse, checkPermissions } = require('../utils')
+const { createTokenUser, attachCookiesToResponse } = require('../utils')
 
 const getAllUsers = async (req, res) => {
     const users = await User.find({ role: 'user' }).select('-password -__v');
@@ -15,7 +15,7 @@ const getSingleUser = async (req, res) => {
     if (!user) {
         throw new CustomError.NotFoundError(`No user with id : ${id}`);
     }
-    checkPermissions(req.user, user._id)
+    // checkPermissions(req.user, user._id) //switched to middleware 
     res.status(StatusCodes.OK).json({ user });
 }
 
