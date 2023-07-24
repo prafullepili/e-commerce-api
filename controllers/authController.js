@@ -1,20 +1,17 @@
 const User = require('../models/User');
 const { StatusCodes } = require('http-status-codes')
 const CustomError = require('../errors')
-const { attachCookiesToResponse, createTokenUser } = require('../utils/index')
+const { attachCookiesToResponse, createTokenUser: createTokenUserPayload } = require('../utils/index')
 
 const register = async (req, res) => {
     const { name, email, password } = req.body;
 
     const isEmailExist = await User.findOne({ email })
     if (isEmailExist) {
-        throw new CustomError.BadRequestError('Email already exists')
+        throw new CustomError.BadRequestError('Email already exists.')
     }
-    const user = await User.create({ name, email, password });
-    // const tokenUser = { name: user.name, userId: user._id, role: user.role }
-    const tokenUser = createTokenUser(user);
-    // const token = jwt.sign(tokenUser, 'jwtSecret', { expiresIn: '1d' })
-    // const token = createJWT({ payload: tokenUser })
+    const user = await User.create({ name, email, password }); //{name: 'prafull1',email: 'prafull1@gmail.com',password: '5ebe2294ecd0e0f08eab7690d2a6ee69',role: 'user',_id: new ObjectId("64be1d038cf4a0432f94db40"),__v: 0}
+    const tokenUser = createTokenUserPayload(user); //{name: 'prafull1',userId: new ObjectId("64be1d038cf4a0432f94db40"),role: 'user'}
     attachCookiesToResponse({ res, user: tokenUser })
     res.status(StatusCodes.CREATED).json({ user: tokenUser })
 }
@@ -29,11 +26,11 @@ const login = async (req, res) => {
     if (!user) {
         throw new CustomError.UnauthenticatedError('Invalid Credentials')
     }
-    const isPasswordCorrect = await user.comparePassword(password);
+    const isPasswordCorrect = await user.comparePassword(password); //return true/false | function defined in User model
     if (!isPasswordCorrect) {
         throw new CustomError.UnauthenticatedError('Invalid Credentials')
     }
-    const tokenUser = createTokenUser(user);
+    const tokenUser = createTokenUserPayload(user); //{name: 'prafull1',userId: new ObjectId("64be1d038cf4a0432f94db40"),role: 'user'}
     attachCookiesToResponse({ res, user: tokenUser })
     res.status(StatusCodes.OK).json({ user: tokenUser })
 }
