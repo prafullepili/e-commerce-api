@@ -44,9 +44,6 @@ const UserSchema = new mongoose.Schema({
 // }
 
 UserSchema.pre('save', async function () {
-    if (this.modifiedPaths().length == 0) {
-        throw new CustomError.CustomAPIError('Same data is given. No change')
-    }
     if (!this.isModified('password')) return
     this.password = md5(this.password);
 })

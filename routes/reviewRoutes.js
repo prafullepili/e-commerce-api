@@ -3,7 +3,7 @@ const { createReview,
     getSingleReview,
     updateReview,
     deleteReview } = require('../controllers/reviewController')
-const { authenticateUser, authorizePermissions } = require('../middleware/authentication')
+const { authenticateUser } = require('../middleware/authentication')
 const express = require('express');
 
 const router = express.Router();
