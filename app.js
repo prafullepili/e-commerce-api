@@ -28,7 +28,7 @@ app.use(fileUpload());
 
 app.get('/', (req, res) => {
     // console.log(req.cookies)
-    console.log(req.signedCookies)
+    // console.log(req.signedCookies)
     res.send('E-commerce api')
 })
 app.use('/api/v1/auth', authRouter)

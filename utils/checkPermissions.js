@@ -1,9 +1,9 @@
 const CustomError = require('../errors')
 
 const checkPermissions = (requestUser, resouceUserId) => {
-    console.log(4, requestUser); //{ name: 'Prafull', userId: '64bd8876c98d8fab174fb975', role: 'admin' }
-    console.log(5, resouceUserId); //new ObjectId("64bdfd5c7e4a5df255abedee")
-    console.log(6, typeof resouceUserId); //object
+    // console.log(4, requestUser); //{ name: 'Prafull', userId: '64bd8876c98d8fab174fb975', role: 'admin' }
+    // console.log(5, resouceUserId); //new ObjectId("64bdfd5c7e4a5df255abedee")
+    // console.log(6, typeof resouceUserId); //object
 
     if (requestUser.role === 'admin') return;
     if (requestUser.userId === resouceUserId.toString()) return
