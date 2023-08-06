@@ -1,0 +1,589 @@
+{
+	"info": {
+		"_postman_id": "5ea724ce-a147-453b-9c8c-3bff15580a50",
+		"name": "E-Commerce-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19638430"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"neha\",\r\n    \"email\" : \"neha@gmail.com\",\r\n    \"password\": \"secret\"\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/register",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"prafull@gmail.com\",\r\n    \"password\": \"secret\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/login",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/auth/logout",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "getAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/users",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSingleUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/users/64be2e7b2adcd988a99b1733",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"users",
+								"64be2e7b2adcd988a99b1733"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "showCurrentUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/users/showMe",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"users",
+								"showMe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserPassword",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\":\"secret\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/users/updateUserPassword/",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"users",
+								"updateUserPassword",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Prafull\",\r\n    \"email\": \"prafull@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/users/updateUser/",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"users",
+								"updateUser",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get All Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/products",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploadImage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/E:/Udemy/NodeJS/fileUpload/images/computer-6.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/products/uploadImage",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"products",
+								"uploadImage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/products/64c9025338e0a62ccce22348",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"products",
+								"64c9025338e0a62ccce22348"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSingleProductReviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/products/64cc915403ffcce789a6e3a6/reviews",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"products",
+								"64cc915403ffcce789a6e3a6",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"emperor bed\",\r\n    \"price\": 23999,\r\n    \"image\": \"https://dl.airtable.com/.attachmentThumbnails/0446e84c5bca9643de3452a61b2d6195/1b32f48b\",\r\n    \"colors\": [\"#0000ff\", \"#000\"],\r\n    \"company\": \"ikea\",\r\n    \"description\": \"Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge\",\r\n    \"category\": \"bedroom\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/products",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/products/64cc915403ffcce789a6e3a6",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"products",
+								"64cc915403ffcce789a6e3a6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/products/64c90c0b3bec66409e65ad1a",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"products",
+								"64c90c0b3bec66409e65ad1a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "getAllReivews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reviews/",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single review",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reviews/64ca9f062ff92cd75c0f1f8f",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"reviews",
+								"64ca9f062ff92cd75c0f1f8f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update review",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 1,\r\n    \"title\": \"Product6 prafullepili\",\r\n    \"comment\": \"Good Product\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/reviews/64cb36741a60530f42169abc",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"reviews",
+								"64cb36741a60530f42169abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete review",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reviews/64cb342642e221fd23ff6ddb",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"reviews",
+								"64cb342642e221fd23ff6ddb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create review",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product\": \"64c93b5100e55efd17619503\",\r\n    \"comment\": \"Bad product\",\r\n    \"title\": \"Product6 neha\",\r\n    \"rating\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/reviews/",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tax\": 399,\r\n    \"shippingFee\": 499,\r\n    \"items\": [\r\n        {\r\n            \"name\": \"accent chair\",\r\n            \"price\": 2599,\r\n            \"image\": \"https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160\",\r\n            \"amount\": 34,\r\n            \"product\": \"64ce51018fbf23e5f00df41b\"\r\n        }\r\n    ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/orders",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllOrders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/orders",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSingleOrders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/orders/id",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"orders",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update order",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/orders/id",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"orders",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show current user Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/orders/showAllMyOrders",
+							"host": [
+								"http://localhost:5000"
+							],
+							"path": [
+								"orders",
+								"showAllMyOrders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000",
+					"host": [
+						"localhost"
+					],
+					"port": "5000"
+				}
+			},
+			"response": []
+		}
+	]
+}
