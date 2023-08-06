@@ -11,7 +11,9 @@ const createProduct = async (req, res) => {
 }
 
 const getAllProducts = async (req, res) => {
-    const products = await Product.find({}).populate('reviews');
+    const products = await Product.find({})
+        .populate('reviews')
+        .populate({ path: 'user', select: 'name' });
     res.status(StatusCodes.OK).json({ products, count: products.length })
 }
 
