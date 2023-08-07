@@ -5,6 +5,13 @@ const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
 
+// security 
+const helment = require('helmet');
+const xss = require('xss-clean');
+const cors = require('cors');
+const mongoSanitize = require('express-mongo-sanitize');
+const rateLimiter = require('express-rate-limit');
+
 const app = express()
 const connectDB = require('./db/connect'); // database
 
@@ -18,6 +25,16 @@ const orderRouter = require('./routes/orderRoutes')
 //middleware 
 const notFountMiddleware = require('./middleware/not-found') //page not found
 const errorHandlerMiddleware = require('./middleware/error-handler')
+
+// security
+app.set('trust proxy', 1);
+app.use(rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 60
+}));
+app.use(helment());
+app.use(cors());
+app.use(mongoSanitize());
 
 app.use(morgan('tiny'))
 app.use(express.json());
