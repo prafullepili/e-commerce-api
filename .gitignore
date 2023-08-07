@@ -1,6 +1,5 @@
 /node_modules
 .env
-README.MD
 public/uploads/user/
 public/uploads/admin/
 docgen.exe
